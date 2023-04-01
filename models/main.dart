@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'compte.dart';
+
 
  void main() {
   int choice;
@@ -18,7 +18,7 @@ import 'compte.dart';
     do {
       print("Would you like to continue? Yes/No\n\n");
       pursuit = stdin.readLineSync()!.toUpperCase();
-    } while (pursuit != "YES" || pursuit != "NO");
+    } while (pursuit != "YES" && pursuit != "NO");
   }
 }
 

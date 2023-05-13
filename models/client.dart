@@ -6,6 +6,10 @@ class Client {
     Compte compte;
 
     Client (this.nom,this.prenom,this.tel,this.email,this.dateNaiss,this.compte);
-
+    
+    @override
+    String toString() {
+    return nom+" "+prenom+" "+tel+" "+compte.toString();
+  }
 
 }

@@ -99,18 +99,66 @@ ListCustomer() {
 }
 
 Deposit() {
-//   print("\n------------Numero de compte destinataire------------\n");
-//   String number = stdin.readLineSync()!;
-//   double solde = stdin.readLineSync()!;
-//   Compte.faireDepot(solde);
+  String number;
+  Compte account;
+  do {
+    print("\n------------Numero de compte destinataire------------\n");
+    number = stdin.readLineSync()!;
+  } while (
+      CustomerData.customers.any((element) => element.compte.numcpt == number));
+  print("\n------------Numero de compte destinataire------------\n");
+  double solde = double.parse(stdin.readLineSync()!);
+  account = CustomerData.customers
+      .firstWhere((element) => element.compte.numcpt == number)
+      .compte;
+  account.faireDepot(solde);
 }
 
 Withdrawal() {
-  // Ajouter le code pour faire un retrait ici
-  print("Option non implémentée");
+  String number;
+  Compte account;
+  do {
+    print("\n------------Numero du compte------------\n");
+    number = stdin.readLineSync()!;
+  } while (
+      CustomerData.customers.any((element) => element.compte.numcpt == number));
+  print("\n------------Montant------------\n");
+  double solde = double.parse(stdin.readLineSync()!);
+  account = CustomerData.customers
+      .firstWhere((element) => element.compte.numcpt == number)
+      .compte;
+  if (!account.faireRetrait(solde)) {
+    print("Retrait effectué avec succès!");
+  } else {
+    double motnt = account.solde;
+    print("Votre solde est insuffisant! Vous ne disposez que de $motnt");
+  }
 }
 
 Transfert() {
-  // Ajouter le code pour transférer de l'argent ici
-  print("Option non implémentée");
+  String number;
+  String number1;
+  Compte account;
+  Compte account1;
+  do {
+    print("\n------------Numero du compte à débiter------------\n");
+    number = stdin.readLineSync()!;
+  } while (
+      CustomerData.customers.any((element) => element.compte.numcpt == number));
+
+  do {
+    print("\n------------Numero du compte à créditer------------\n");
+    number1 = stdin.readLineSync()!;
+  } while (CustomerData.customers
+      .any((element) => element.compte.numcpt == number1));
+      
+  print("\n------------Montant------------\n");
+  double solde = double.parse(stdin.readLineSync()!);
+  account = CustomerData.customers
+      .firstWhere((element) => element.compte.numcpt == number)
+      .compte;
+  account1 = CustomerData.customers
+      .firstWhere((element) => element.compte.numcpt == number1)
+      .compte;
+  account.faireTransfert(account1, solde);
 }
